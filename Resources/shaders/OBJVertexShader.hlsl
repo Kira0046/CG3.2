@@ -7,6 +7,8 @@ VSOutput main(float4 pos : POSITION, float3 normal : NORMAL, float2 uv : TEXCOOR
 
 	float3 lightcolor = float3(1, 1, 1);
 
+	float3 ambient = m_ambient;
+
 	VSOutput output; // ピクセルシェーダーに渡す値
 	output.svpos = mul(mat, pos);
 
