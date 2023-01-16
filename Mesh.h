@@ -7,6 +7,7 @@
 #include <d3dx12.h>
 #include <vector>
 #include <wrl.h>
+#include <unordered_map>
 
 /// <summary>
 /// 形状データ
@@ -19,6 +20,7 @@ class Mesh {
 	using XMFLOAT2 = DirectX::XMFLOAT2;
 	using XMFLOAT3 = DirectX::XMFLOAT3;
 	using XMFLOAT4 = DirectX::XMFLOAT4;
+	using XMVECTOR = DirectX::XMVECTOR;
 	using XMMATRIX = DirectX::XMMATRIX;
 
   public: // サブクラス
@@ -100,6 +102,21 @@ class Mesh {
 	/// <param name="cmdList">命令発行先コマンドリスト</param>
 	void Draw(ID3D12GraphicsCommandList* cmdList);
 
+	/// <summary>
+	/// エッジ平滑化データの追加
+	/// </summary>
+	/// <param name="indexPosition">座標インデックス</param>
+	/// <param name="indexVertex">頂点インデックス</param>
+	void AddSmoothingData(unsigned short indexPosition, unsigned short indexVertex);
+
+	void CalculateSmoothedVertexNormals();
+
+	/// <summary>
+	/// 頂点データの数を取得
+	/// </summary>
+	/// <returns>頂点データの数</returns>
+	inline size_t GetVertexCount() { return vertices.size(); }
+
   private: // メンバ変数
 	// 名前
 	std::string name;
@@ -115,6 +132,8 @@ class Mesh {
 	std::vector<VertexPosNormalUv> vertices;
 	// 頂点インデックス配列
 	std::vector<unsigned short> indices;
+	//頂点法線スムージング用データ
+	std::unordered_map<unsigned short, std::vector<unsigned short>> smoothData;
 	// マテリアル
 	Material* material = nullptr;
 	// 頂点バッファのマップ
