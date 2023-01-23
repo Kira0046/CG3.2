@@ -82,6 +82,12 @@ void GameScene::Update()
 	objGround->Update();
 	objFighter->Update();
 	objSphere->Update();
+	{
+		XMFLOAT3 rot = objSphere->GetRotation();
+		rot.y+=0.2f;
+		objSphere->SetRotation(rot);
+		objFighter->SetRotation(rot);
+	}
 
 	debugText.Print("AD: move camera LeftRight", 50, 50, 1.0f);
 	debugText.Print("WS: move camera UpDown", 50, 70, 1.0f);
