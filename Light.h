@@ -45,6 +45,8 @@ public:
 
 	void SetLightDir(const XMVECTOR& lightdir);
 
+	void SetLightColor(const XMFLOAT3& lightcolor);
+
 	void Update();
 
 	void Draw(ID3D12GraphicsCommandList* cmdList,UINT rootParameterIndex);

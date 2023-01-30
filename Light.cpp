@@ -72,6 +72,12 @@ void Light::SetLightDir(const XMVECTOR& lightdir)
 	dirty = true;
 }
 
+void Light::SetLightColor(const XMFLOAT3& lightcolor)
+{
+	this->lightcolor = lightcolor;
+	dirty = true;
+}
+
 void Light::Update()
 {
 	if (dirty) {

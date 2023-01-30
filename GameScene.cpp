@@ -20,6 +20,7 @@ GameScene::~GameScene()
 	delete modelGround;
 	delete modelFighter;
 	delete camera;
+	delete light;
 }
 
 void GameScene::Initialize(DirectXCommon* dxCommon, Input* input)
@@ -72,6 +73,9 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input)
 	objSphere->SetModel(modelSphere);
 	objFighter->SetPosition({ +1,0,0 });
 	objSphere->SetPosition({ -1,1,0 });
+
+	//light = Light::Create();
+	//light->
 }
 
 void GameScene::Update()
