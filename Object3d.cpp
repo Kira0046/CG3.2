@@ -233,6 +233,8 @@ bool Object3d::Initialize() {
 }
 
 void Object3d::Update() {
+
+	HRESULT result;
 	assert(sCamera_);
 
 	XMMATRIX matScale, matRot, matTrans;
@@ -271,11 +273,13 @@ void Object3d::Update() {
 	}
 
 	// 定数バッファへデータ転送
+	ConstBufferDataB0* constMap = nullptr;
+	result = constBuffB0->Map(0, nullptr, (void**)&constMap);
 	//constMap->mat = matWorld * matViewProjection; // 行列の合成
 	constMap->viewproj = matViewProjection;
 	constMap->world = matWorld;
 	constMap->cameraPos = cameraPos;
-	//constBuffB0->Unmap(0, nullptr);
+	constBuffB0->Unmap(0, nullptr);
 }
 
 void Object3d::Draw() {
@@ -295,7 +299,7 @@ void Object3d::Draw() {
 	// 定数バッファビューをセット
 	sCommandList->SetGraphicsRootConstantBufferView(0, constBuffB0->GetGPUVirtualAddress());
 
-	//light->Draw(sCommandList, 3);
+	light->Draw(sCommandList, 2);
 	// モデル描画
 	model->Draw(sCommandList);
 }

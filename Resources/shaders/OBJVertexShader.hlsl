@@ -22,7 +22,7 @@ VSOutput main(float4 pos : POSITION, float3 normal : NORMAL, float2 uv : TEXCOOR
 
 	//float3 eyedir = normalize(eye - pos.xyz);
 
-	float eyedir = normalize(cameraPos - wpos.xyz);
+	float3 eyedir = normalize(cameraPos - wpos.xyz);
 
 	//float3 reflect = normalize(lightdir + 2 * dot(-lightdir, normal) * normal);
 	float3 reflect = normalize(-lightv + 2 * dot(lightv, wnormal.xyz) * wnormal.xyz);
