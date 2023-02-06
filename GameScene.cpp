@@ -70,8 +70,13 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input)
 	modelSphere = Model::CreateFromOBJ("sphere",true);
 	objSphere = Object3d::Create();
 	objSphere->SetModel(modelSphere);
-	objFighter->SetPosition({ +1,0,0 });
 	objSphere->SetPosition({ -1,1,0 });
+	objFighter->SetPosition({ +1,0,0 });
+
+	modelSphere2 = Model::CreateFromOBJ("sphere", false);
+	objSphere2 = Object3d::Create();
+	objSphere2->SetModel(modelSphere2);
+	objSphere2->SetPosition({ -3,1,0 });
 }
 
 void GameScene::Update()
@@ -82,6 +87,7 @@ void GameScene::Update()
 	objGround->Update();
 	objFighter->Update();
 	objSphere->Update();
+	objSphere2->Update();
 
 	debugText.Print("AD: move camera LeftRight", 50, 50, 1.0f);
 	debugText.Print("WS: move camera UpDown", 50, 70, 1.0f);
@@ -118,6 +124,7 @@ void GameScene::Draw()
 	//objGround->Draw();
 	objFighter->Draw();
 	objSphere->Draw();
+	objSphere2->Draw();
 
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
